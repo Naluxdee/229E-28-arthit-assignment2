@@ -9,14 +9,15 @@ public class AirPlane : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey( KeyCode.Space ))
         {
             //Add Thrust
-            rb.AddForce(transform.forward * enginePowerThrust);
+            rb.AddForce( transform.forward * enginePowerThrust );
         }
+
         //Lift
-        Vector3 lift = Vector3.Project(rb.velocity, transform.forward);
-        rb.AddForce(transform.up * lift.magnitude * liftBooster);
+        Vector3 lift = Vector3.Project( rb.velocity, transform.forward );
+        rb.AddForce( transform.up * lift.magnitude * liftBooster );
 
         //Drag
         rb.drag = rb.velocity.magnitude * drag;
@@ -26,7 +27,7 @@ public class AirPlane : MonoBehaviour
         rb.AddTorque(Input.GetAxis("Horizontal") * transform.forward * -1);
 
         //Up-Down
-        rb.AddTorque(Input.GetAxis("Velocity") * transform.right);
+        rb.AddTorque( Input.GetAxis("Vertical") * transform.right );
 
     }
 }
